@@ -1,0 +1,1 @@
+Tabelas Gold geradas pelo pipeline (dados sintéticos).
