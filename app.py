@@ -35,7 +35,7 @@ col_a, col_b = st.columns(2)
 with col_a:
     st.subheader("2. Produtividade média por região")
     g2 = (alt.Chart(tab["regiao"]).mark_bar()
-          .encode(x=alt.X("regiao:N", title=None), y=alt.Y("produtividade_media:Q", title="sc/ha"),
+          .encode(x=alt.X("regiao:N", title=None, axis=alt.Axis(labelAngle=0)), y=alt.Y("produtividade_media:Q", title="sc/ha"),
                   color=alt.Color("safra:N", title="Safra"), xOffset="safra:N",
                   tooltip=["safra", "regiao", "produtividade_media", "n_com_produtividade"]))
     st.altair_chart(g2, use_container_width=True)
@@ -43,8 +43,8 @@ with col_b:
     st.subheader("3. Manejo: densidade × resistência a doenças")
     m = manejo_matriz(tab["manejo"], safra)
     g3 = (alt.Chart(m).mark_rect()
-          .encode(x=alt.X("densidade_sementes:N", title="Densidade de sementes", sort=["Baixa", "Média", "Alta"]),
-                  y=alt.Y("resistencia_doencas:N", title="Resistência a doenças", sort=["Alta", "Média", "Baixa"]),
+          .encode(x=alt.X("densidade_sementes:N", title="Densidade de sementes", sort=["Baixa", "Média", "Alta"], axis=alt.Axis(labelAngle=0)),
+                  y=alt.Y("resistencia_doencas:N", title="Resistência a doenças", sort=["Baixa", "Média", "Alta"], axis=alt.Axis(labelAngle=0, labelLimit=200)),
                   color=alt.Color("produtividade_media:Q", title="sc/ha", scale=alt.Scale(scheme="teals")),
                   tooltip=["densidade_sementes", "resistencia_doencas", "produtividade_media", "n_com_produtividade"]))
     st.altair_chart(g3, use_container_width=True)
